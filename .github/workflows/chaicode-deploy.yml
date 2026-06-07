@@ -39,6 +39,6 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             sudo docker pull skullcoder/chaicode-node
-            sudo docker stop $(sudo docker ps -q --filter "ancestor=skullcoder/chaicode-node") || true
-            sudo docker rm $(sudo docker ps -a -q --filter "ancestor=skullcoder/chaicode-node") || true
-            sudo docker run -d -p 8000:8000 skullcoder/chaicode-node
+            sudo docker stop chaicode-node 2>/dev/null || true
+            sudo docker rm chaicode-node 2>/dev/null || true
+            sudo docker run -d -p 8000:8000 --name chaicode-node --restart unless-stopped skullcoder/chaicode-node
