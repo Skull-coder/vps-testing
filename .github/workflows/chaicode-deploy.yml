@@ -38,9 +38,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            cd vps-testing/
-            git pull
-            npm install
-            pm2 restart 0
+            sudo docker pull skullcoder/chaicode-node
+            sudo docker stop $(docker ps -q --filter "ancestor=skullcoder/chaicode-node") || true
+            sudo docker rm $(docker ps -a -q --filter "ancestor=skullcoder/chaicode-node") || true
+            sudo docker run -d -p 8000:8000 skullcoder/chaicode-node
