@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use("/", (req, res)=>{
     res.json({
-        message: "Server is running -2 auto deploy startsssss integrated with docker image"
+        message: "Finally completedddd"
     })
 })
 
